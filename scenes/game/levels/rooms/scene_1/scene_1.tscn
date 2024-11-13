@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dhor7t5klwdwx"]
+[gd_scene load_steps=25 format=3 uid="uid://dhor7t5klwdwx"]
 
 [ext_resource type="TileSet" uid="uid://bx1rsqucrwm2i" path="res://assets/resources/bg_tile_set.tres" id="1_0t8t3"]
 [ext_resource type="PackedScene" uid="uid://8rbt5lmdrp0s" path="res://scenes/game/camera/camera.tscn" id="1_8l71v"]
@@ -23,7 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://b5qjvfbte4svk" path="res://scenes/game/levels/objects/pickable_object/pickable_object.tscn" id="20_juf85"]
 [ext_resource type="PackedScene" uid="uid://glchvmmfffqa" path="res://scenes/game/levels/areas/bomb_shop/bomb_shop.tscn" id="21_sh538"]
 [ext_resource type="PackedScene" uid="uid://dl8afnvp5w315" path="res://scenes/game/levels/objects/power_up/power_up.tscn" id="22_vr6n4"]
-[ext_resource type="PackedScene" uid="uid://b0h74swrcnnxk" path="res://scenes/game/enemy/sirena/sirena.tscn" id="24_42n5k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3x710"]
 size = Vector2(31, 21)
@@ -211,9 +210,6 @@ animation = "green_diamond"
 position = Vector2(284, 500)
 animation = "run"
 moving_direction = "right"
-
-[node name="Sirena" parent="." instance=ExtResource("24_42n5k")]
-position = Vector2(394, 434)
 
 [node name="Cannon" parent="." instance=ExtResource("19_msljc")]
 position = Vector2(797, 340)

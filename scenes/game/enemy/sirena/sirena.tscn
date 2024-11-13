@@ -1,8 +1,9 @@
-[gd_scene load_steps=45 format=3 uid="uid://b0h74swrcnnxk"]
+[gd_scene load_steps=55 format=3 uid="uid://b0h74swrcnnxk"]
 
 [ext_resource type="Texture2D" uid="uid://r5knlaqdrba0" path="res://assets/sprites/sirena/angry.png" id="1_roxas"]
 [ext_resource type="Texture2D" uid="uid://bj5b2k82dpub1" path="res://assets/sprites/sirena/walk.png" id="2_b32ng"]
 [ext_resource type="Texture2D" uid="uid://clkd1qd3lnx70" path="res://assets/sprites/sirena/attack.png" id="2_uig6r"]
+[ext_resource type="Texture2D" uid="uid://c8f6cvnd1fjsd" path="res://assets/sprites/sirena/dead.png" id="3_art2k"]
 [ext_resource type="Texture2D" uid="uid://dh75ps276gm0g" path="res://assets/sprites/treasure_hunters/the_crusty_crew/sprites/crabby/11_attack_effect/attack_effect_01.png" id="41_61e77"]
 [ext_resource type="Texture2D" uid="uid://61tsaa7itvvm" path="res://assets/sprites/treasure_hunters/the_crusty_crew/sprites/crabby/11_attack_effect/attack_effect_02.png" id="42_whk2v"]
 [ext_resource type="Texture2D" uid="uid://l2xhb3srapic" path="res://assets/sprites/treasure_hunters/the_crusty_crew/sprites/crabby/11_attack_effect/attack_effect_03.png" id="43_la7jp"]
@@ -42,7 +43,7 @@ var _male_hurt_sound = preload(\"res://assets/sounds/male_hurt.mp3\")
 
 # Definición de parametros de física
 var _gravity = 10
-var _speed = 25
+var _speed = 50
 # Definición de dirección de movimientos
 var _moving_left = true
 # Copia de objeto que entra a colisión
@@ -54,7 +55,7 @@ var _stop_detection = false
 # Vandera de no detectar ataques
 var _stop_attack = false
 # Cuantas veces aguanta
-var _hit_to_die = 3
+var _hit_to_die = 5
 # Cuantas veces pegaron al personaje principal
 var _has_hits = 0
 # La muerte del cangrejo
@@ -157,7 +158,7 @@ func _init_state():
 	# Animación de estado inicial
 	velocity.x = 0
 	_animation.play(animation)
-	_animation_effect.play(\"walk\")
+	_animation_effect.play(\"idle\")
 	# Limpiamos las variables
 	_body = null
 	_stop_detection = false
@@ -176,7 +177,7 @@ func _on_enemy_animation_frame_changed():
 			_audio_player.play()
 		else:
 			_animation.play(\"walk\")
-			_animation_effect.play(\"walk\")
+			_animation_effect.play(\"idle\")
 		
 		if _body:
 			# Quitamos vidas
@@ -247,7 +248,7 @@ func _damage():
 	_audio_player.play()
 	# Reproducimos la animación de pegar
 	_animation.play(\"hit\")
-	_animation_effect.play(\"walk\")
+	_animation_effect.play(\"idle\")
 	
 	# Validamos si tenemos ataque especial
 	if Global.number_attack > 0:
@@ -276,7 +277,7 @@ func _on_enemy_animation_animation_finished():
 	elif _animation.animation == \"hit\":
 		if not _stop_attack: 
 			_animation.play(\"walk\")
-			_animation_effect.play(\"walk\")
+			_animation_effect.play(\"idle\")
 			# Atacamos
 			_attack()
 	
@@ -365,6 +366,42 @@ region = Rect2(192, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6h1ap"]
 atlas = ExtResource("2_uig6r")
 region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lora0"]
+atlas = ExtResource("3_art2k")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_speb1"]
+atlas = ExtResource("3_art2k")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0kvv"]
+atlas = ExtResource("3_art2k")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyhix"]
+atlas = ExtResource("3_art2k")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afps2"]
+atlas = ExtResource("3_art2k")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bauh"]
+atlas = ExtResource("3_art2k")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ulk2"]
+atlas = ExtResource("3_art2k")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exb2k"]
+atlas = ExtResource("3_art2k")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_modg7"]
+atlas = ExtResource("3_art2k")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mm2q2"]
 atlas = ExtResource("2_b32ng")
@@ -491,6 +528,48 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_lora0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_speb1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0kvv")
+}],
+"loop": true,
+"name": &"dead_ground",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyhix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afps2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2bauh")
+}],
+"loop": true,
+"name": &"dead_hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ulk2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exb2k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_modg7")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_mm2q2")
 }, {
 "duration": 1.0,
@@ -532,7 +611,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ku5hj"]
-size = Vector2(28, 31)
+size = Vector2(25, 29)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6nhye"]
 animations = [{
@@ -560,27 +639,28 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62ixa"]
-size = Vector2(26.5, 29)
+size = Vector2(27.125, 30.5)
 
-[node name="Crabby" type="CharacterBody2D"]
+[node name="Sirena" type="CharacterBody2D"]
 script = SubResource("GDScript_6chrj")
 
 [node name="EnemyAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fq7gh")
-animation = &"attack"
+animation = &"dead_ground"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -0.5)
+position = Vector2(-1.5, -0.5)
 shape = SubResource("RectangleShape2D_ku5hj")
 
 [node name="EnemyEffect" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_6nhye")
 animation = &"idle"
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1.25, -0.5)
+position = Vector2(-1.4375, -1)
 shape = SubResource("RectangleShape2D_62ixa")
 one_way_collision_margin = 0.0
 
