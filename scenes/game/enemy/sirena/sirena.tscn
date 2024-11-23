@@ -81,9 +81,6 @@ func _physics_process(delta):
 	if animation == \"walk\":
 		_move_character(delta)
 		_turn()
-	# Si la animación es de walk, aplicamos el movimiento
-	elif animation == \"walk\":
-		_move_walk()
 	# Si la animación es de persecución, aplicamos la persecución
 	if moving_direction == \"active\" and !_stop_detection:
 		_detection()
@@ -269,18 +266,11 @@ func _damage():
 		# Lo matamos y quitamos de la escena
 		if _animation.animation != \"dead_ground\":
 			_animation.play(\"dead_ground\")
-
-
-func _on_enemy_animation_animation_finished():
-	if _animation.animation == \"dead_ground\":
-		queue_free()
-	elif _animation.animation == \"hit\":
-		if not _stop_attack: 
-			_animation.play(\"walk\")
-			_animation_effect.play(\"idle\")
-			# Atacamos
-			_attack()
+			$deadTimer.start()
 	
+func _on_dead_timer_timeout():
+	queue_free()
+
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_by3kh"]
@@ -646,7 +636,7 @@ script = SubResource("GDScript_6chrj")
 
 [node name="EnemyAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fq7gh")
-animation = &"dead_ground"
+animation = &"hit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, -0.5)
@@ -686,8 +676,12 @@ target_position = Vector2(300, 0)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 bus = &"Effects"
 
-[connection signal="animation_finished" from="EnemyAnimation" to="." method="_on_enemy_animation_animation_finished"]
+[node name="deadTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
 [connection signal="frame_changed" from="EnemyAnimation" to="." method="_on_enemy_animation_frame_changed"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="deadTimer" to="." method="_on_dead_timer_timeout"]
