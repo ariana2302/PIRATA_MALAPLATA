@@ -6,8 +6,8 @@ extends CharacterBody2D
 
 # Acciones del Enemigo
 @export_enum(
-	"idle",
-	"run",
+	"walk",
+	"walk",
 ) var animation: String
 
 # Dirección de movimiento del Enemigo
@@ -32,7 +32,7 @@ var _male_hurt_sound = preload("res://assets/sounds/male_hurt.mp3")
 
 # Definición de parametros de física
 var _gravity = 10
-var _speed = 25
+var _speed = 50
 # Definición de dirección de movimientos
 var _moving_left = true
 # Copia de objeto que entra a colisión
@@ -44,7 +44,7 @@ var _stop_detection = false
 # Vandera de no detectar ataques
 var _stop_attack = false
 # Cuantas veces aguanta
-var _hit_to_die = 3
+var _hit_to_die = 5
 # Cuantas veces pegaron al personaje principal
 var _has_hits = 0
 # La muerte del cangrejo
@@ -57,9 +57,9 @@ func _ready():
 	if moving_direction == 'right':
 		_moving_left = false
 		scale.x = -scale.x
-	# Si no seteamos la animación ponemos por defecto la animación idle
+	# Si no seteamos la animación ponemos por defecto la animación walk
 	if not animation:
-		animation = "idle"
+		animation = "walk"
 	# Iniciamos la animación
 	_init_state()
 
@@ -67,12 +67,9 @@ func _ready():
 func _physics_process(delta):
 	if (die): return
 	# Si la animación es de correr, aplicamos el movimiento
-	if animation == "run":
+	if animation == "walk":
 		_move_character(delta)
 		_turn()
-	# Si la animación es de idle, aplicamos el movimiento
-	elif animation == "idle":
-		_move_idle()
 	# Si la animación es de persecución, aplicamos la persecución
 	if moving_direction == "active" and !_stop_detection:
 		_detection()
@@ -92,7 +89,7 @@ func _move_character(_delta):
 	move_and_slide()
 
 
-func _move_idle():
+func _move_walk():
 	# Aplicamos la gravidad
 	velocity.y += _gravity
 	# Aplicamos la dirección de movimiento
@@ -165,7 +162,7 @@ func _on_enemy_animation_frame_changed():
 			_audio_player.stream = _male_hurt_sound
 			_audio_player.play()
 		else:
-			_animation.play("idle")
+			_animation.play("walk")
 			_animation_effect.play("idle")
 		
 		if _body:
@@ -258,15 +255,7 @@ func _damage():
 		# Lo matamos y quitamos de la escena
 		if _animation.animation != "dead_ground":
 			_animation.play("dead_ground")
-
-
-func _on_enemy_animation_animation_finished():
-	if _animation.animation == "dead_ground":
-		queue_free()
-	elif _animation.animation == "hit":
-		if not _stop_attack: 
-			_animation.play("idle")
-			_animation_effect.play("idle")
-			# Atacamos
-			_attack()
+			$deadTimer.start()
 	
+func _on_dead_timer_timeout():
+	queue_free()
