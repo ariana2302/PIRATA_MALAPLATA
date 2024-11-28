@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dp7if4xikyg47"]
+[gd_scene load_steps=25 format=3 uid="uid://dp7if4xikyg47"]
 
 [ext_resource type="TileSet" uid="uid://bx1rsqucrwm2i" path="res://assets/resources/bg_tile_set.tres" id="1_fei5w"]
 [ext_resource type="PackedScene" uid="uid://8rbt5lmdrp0s" path="res://scenes/game/camera/camera.tscn" id="3_p8w1m"]
@@ -23,7 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://c36rtvjb7r5d1" path="res://scenes/game/levels/objects/red_potion/red_potion.tscn" id="22_7on1t"]
 [ext_resource type="PackedScene" uid="uid://dl8afnvp5w315" path="res://scenes/game/levels/objects/power_up/power_up.tscn" id="23_0b467"]
 [ext_resource type="PackedScene" uid="uid://b0h74swrcnnxk" path="res://scenes/game/enemy/sirena/sirena.tscn" id="23_8mawk"]
-[ext_resource type="PackedScene" uid="uid://2yuqneo3nyce" path="res://scenes/game/enemy/big guy/big_guy.tscn" id="24_dp1jp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bqbxp"]
 animations = [{
@@ -288,9 +287,3 @@ animation = &"green_bottle"
 [node name="Sirena" parent="." instance=ExtResource("23_8mawk")]
 position = Vector2(1807, 461)
 scale = Vector2(3, 3)
-
-[node name="Crabby" parent="." instance=ExtResource("24_dp1jp")]
-position = Vector2(628, 455)
-scale = Vector2(1.2, 1.2)
-animation = "run"
-moving_direction = "left"
