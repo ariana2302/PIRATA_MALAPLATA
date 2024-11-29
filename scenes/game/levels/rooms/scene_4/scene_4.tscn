@@ -1,8 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://dp7if4xikyg47"]
+[gd_scene load_steps=26 format=3 uid="uid://dp7if4xikyg47"]
 
 [ext_resource type="TileSet" uid="uid://bx1rsqucrwm2i" path="res://assets/resources/bg_tile_set.tres" id="1_fei5w"]
 [ext_resource type="PackedScene" uid="uid://8rbt5lmdrp0s" path="res://scenes/game/camera/camera.tscn" id="3_p8w1m"]
-[ext_resource type="PackedScene" uid="uid://kv5u25275e0t" path="res://scenes/game/levels/objects/candle.tscn" id="4_jd20g"]
+[ext_resource type="PackedScene" uid="uid://kv5u25275e0t" path="res://scenes/game/levels/candle.tscn" id="4_jd20g"]
 [ext_resource type="PackedScene" uid="uid://ca3ueo0yewjov" path="res://scenes/game/characters/main_character/main_character.tscn" id="5_k2keo"]
 [ext_resource type="FontFile" uid="uid://dregmkvncw55k" path="res://assets/fonts/press_Sstart_2p/PressStart2P-Regular.ttf" id="6_r4sfj"]
 [ext_resource type="Texture2D" uid="uid://6etqs5xlh3wf" path="res://Pirate Bomb/Sprites/7-Objects/12-Other Objects/Windows.png" id="7_jw3p8"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://c36rtvjb7r5d1" path="res://scenes/game/levels/objects/red_potion/red_potion.tscn" id="22_7on1t"]
 [ext_resource type="PackedScene" uid="uid://dl8afnvp5w315" path="res://scenes/game/levels/objects/power_up/power_up.tscn" id="23_0b467"]
 [ext_resource type="PackedScene" uid="uid://b0h74swrcnnxk" path="res://scenes/game/enemy/sirena/sirena.tscn" id="23_8mawk"]
+[ext_resource type="PackedScene" uid="uid://2yuqneo3nyce" path="res://scenes/game/enemy/big guy/big_guy.tscn" id="24_dp1jp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bqbxp"]
 animations = [{
@@ -107,7 +108,7 @@ position = Vector2(1471, 326)
 speed_scale = 2.0
 
 [node name="MainCharacter" parent="." instance=ExtResource("5_k2keo")]
-position = Vector2(1160, 491)
+position = Vector2(284, 481)
 
 [node name="Camera2D" parent="." node_paths=PackedStringArray("character") instance=ExtResource("3_p8w1m")]
 character = NodePath("../MainCharacter")
@@ -287,3 +288,9 @@ animation = &"green_bottle"
 [node name="Sirena" parent="." instance=ExtResource("23_8mawk")]
 position = Vector2(1807, 461)
 scale = Vector2(3, 3)
+
+[node name="Crabby" parent="." instance=ExtResource("24_dp1jp")]
+position = Vector2(628, 455)
+scale = Vector2(1.2, 1.2)
+animation = "run"
+moving_direction = "left"
