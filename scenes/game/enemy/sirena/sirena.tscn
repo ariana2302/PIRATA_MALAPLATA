@@ -601,7 +601,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ku5hj"]
-size = Vector2(25, 29)
+size = Vector2(20, 23)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6nhye"]
 animations = [{
@@ -629,17 +629,19 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62ixa"]
-size = Vector2(27.125, 30.5)
+size = Vector2(21, 25.25)
 
 [node name="Sirena" type="CharacterBody2D"]
 script = SubResource("GDScript_6chrj")
 
 [node name="EnemyAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(0.6875, 0.78125)
 sprite_frames = SubResource("SpriteFrames_fq7gh")
 animation = &"hit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, -0.5)
+position = Vector2(-2, -2)
 shape = SubResource("RectangleShape2D_ku5hj")
 
 [node name="EnemyEffect" type="AnimatedSprite2D" parent="."]
@@ -650,7 +652,7 @@ animation = &"idle"
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1.4375, -1)
+position = Vector2(-2, -2)
 shape = SubResource("RectangleShape2D_62ixa")
 one_way_collision_margin = 0.0
 
