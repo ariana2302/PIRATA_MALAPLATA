@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://drpyw1qybvsw4"]
+
+[ext_resource type="Texture2D" uid="uid://c6vwmslbu4rx0" path="res://untitled_0001.png" id="1_an5t4"]
+[ext_resource type="Texture2D" uid="uid://8ouqg3wevtth" path="res://untitled_0002.png" id="2_nffhx"]
+[ext_resource type="Texture2D" uid="uid://cah3b4xtxrlku" path="res://untitled_0003.png" id="3_xraea"]
+[ext_resource type="Texture2D" uid="uid://bf2uwhfcdnnur" path="res://untitled_0004.png" id="4_s7cia"]
+[ext_resource type="Texture2D" uid="uid://cakir0wg2v4oc" path="res://untitled_0005.png" id="5_ppf0n"]
+[ext_resource type="Script" path="res://olas.gd" id="6_nh3mw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wn2iq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_an5t4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nffhx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xraea")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_s7cia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ppf0n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+position = Vector2(73.5, 0)
+scale = Vector2(3.29688, 1)
+sprite_frames = SubResource("SpriteFrames_wn2iq")
+script = ExtResource("6_nh3mw")
