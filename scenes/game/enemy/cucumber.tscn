@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://c543jplm0t4en"]
+[gd_scene load_steps=90 format=3 uid="uid://c543jplm0t4en"]
 
 [ext_resource type="Texture2D" uid="uid://cvbqpabbd3083" path="res://assets/sprites/pirate_bomb/3_enemy_cucumber/3_jump_anticipation/1.png" id="1_h2dp1"]
 [ext_resource type="Texture2D" uid="uid://s2ehm7hcyime" path="res://assets/sprites/pirate_bomb/3_enemy_cucumber/7_attack/1.png" id="2_1o1kq"]
@@ -41,11 +41,8 @@
 [ext_resource type="Texture2D" uid="uid://b5crf2eomqfwe" path="res://assets/sprites/pirate_bomb/3_enemy_cucumber/1_idle/6.png" id="39_egpkd"]
 [ext_resource type="Texture2D" uid="uid://butrvatq1vt2f" path="res://assets/sprites/pirate_bomb/3_enemy_cucumber/1_idle/7.png" id="40_8slve"]
 [ext_resource type="Texture2D" uid="uid://50trxi2c1i82" path="res://assets/sprites/pirate_bomb/3_enemy_cucumber/1_idle/8.png" id="41_4yvib"]
-[ext_resource type="Texture2D" uid="uid://dh75ps276gm0g" path="res://assets/sprites/treasure_hunters/the_crusty_crew/sprites/crabby/11_attack_effect/attack_effect_01.png" id="41_38qex"]
 [ext_resource type="Texture2D" uid="uid://bxwvaeq105lx3" path="res://assets/sprites/pirate_bomb/3_enemy_cucumber/1_idle/9.png" id="42_3qdhm"]
-[ext_resource type="Texture2D" uid="uid://61tsaa7itvvm" path="res://assets/sprites/treasure_hunters/the_crusty_crew/sprites/crabby/11_attack_effect/attack_effect_02.png" id="42_ldlis"]
 [ext_resource type="Texture2D" uid="uid://cn26iy0hb5ael" path="res://assets/sprites/pirate_bomb/3_enemy_cucumber/1_idle/10.png" id="43_k5w1d"]
-[ext_resource type="Texture2D" uid="uid://l2xhb3srapic" path="res://assets/sprites/treasure_hunters/the_crusty_crew/sprites/crabby/11_attack_effect/attack_effect_03.png" id="43_minyo"]
 [ext_resource type="Texture2D" uid="uid://bjudjyu82t7ea" path="res://assets/sprites/pirate_bomb/3_enemy_cucumber/1_idle/11.png" id="44_43m0t"]
 [ext_resource type="Texture2D" uid="uid://b1mq7i8gu5d5k" path="res://assets/sprites/pirate_bomb/3_enemy_cucumber/1_idle/12.png" id="45_nwwwj"]
 [ext_resource type="Texture2D" uid="uid://t1g5hrd5sptk" path="res://assets/sprites/pirate_bomb/3_enemy_cucumber/1_idle/13.png" id="46_fns33"]
@@ -675,20 +672,11 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ku5hj"]
-size = Vector2(40, 23)
+size = Vector2(19, 29)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6nhye"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("41_38qex")
-}, {
-"duration": 1.0,
-"texture": ExtResource("42_ldlis")
-}, {
-"duration": 1.0,
-"texture": ExtResource("43_minyo")
-}],
+"frames": [],
 "loop": false,
 "name": &"attack_effect",
 "speed": 5.0
@@ -703,7 +691,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62ixa"]
-size = Vector2(42, 25)
+size = Vector2(22.5, 30.5)
 
 [node name="Crabby" type="CharacterBody2D"]
 script = SubResource("GDScript_6chrj")
@@ -712,35 +700,34 @@ script = SubResource("GDScript_6chrj")
 position = Vector2(1, -2)
 scale = Vector2(0.59375, 0.5)
 sprite_frames = SubResource("SpriteFrames_fq7gh")
-animation = &"attack"
-frame_progress = 0.675622
+animation = &"anticipation"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 1.5)
+position = Vector2(1.5, 0.5)
 shape = SubResource("RectangleShape2D_ku5hj")
 
 [node name="EnemyEffect" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6nhye")
-animation = &"idle"
+animation = &"attack_effect"
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(2, 1.5)
+position = Vector2(1.25, 0.25)
 shape = SubResource("RectangleShape2D_62ixa")
 one_way_collision_margin = 0.0
 
 [node name="RayCastTerrain" type="RayCast2D" parent="Area2D"]
-position = Vector2(-19, -7)
+position = Vector2(-10, -7)
 scale = Vector2(0.5, 0.5)
 
 [node name="RayCastWall" type="RayCast2D" parent="Area2D"]
-position = Vector2(-18, 0)
+position = Vector2(-8, 0)
 scale = Vector2(0.5, 0.5)
 target_position = Vector2(-5, 0)
 
 [node name="RayCastVisionLeft" type="RayCast2D" parent="Area2D"]
-position = Vector2(-20, 0)
+position = Vector2(-10, 0)
 scale = Vector2(0.5, 0.5)
 target_position = Vector2(-300, 0)
 
