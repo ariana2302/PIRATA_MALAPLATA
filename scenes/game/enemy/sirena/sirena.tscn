@@ -37,6 +37,7 @@ script/source = "extends CharacterBody2D
 @onready var _raycast_vision_right := $Area2D/RayCastVisionRight
 @onready var _audio_player= $AudioStreamPlayer2D # Reproductor de audios
 
+
 # Definimos sonidos
 var _punch_sound = preload(\"res://assets/sounds/punch.mp3\")
 var _male_hurt_sound = preload(\"res://assets/sounds/male_hurt.mp3\")
@@ -270,6 +271,7 @@ func _damage():
 	
 func _on_dead_timer_timeout():
 	queue_free()
+	
 
 "
 
@@ -657,23 +659,23 @@ shape = SubResource("RectangleShape2D_62ixa")
 one_way_collision_margin = 0.0
 
 [node name="RayCastTerrain" type="RayCast2D" parent="Area2D"]
-position = Vector2(-19, -7)
+position = Vector2(-13, -13)
 scale = Vector2(0.5, 0.5)
 
 [node name="RayCastWall" type="RayCast2D" parent="Area2D"]
-position = Vector2(-18, 0)
+position = Vector2(-12, 0)
 scale = Vector2(0.5, 0.5)
-target_position = Vector2(-5, 0)
+target_position = Vector2(-6, 0)
 
 [node name="RayCastVisionLeft" type="RayCast2D" parent="Area2D"]
-position = Vector2(-20, 0)
+position = Vector2(-14, 0)
 scale = Vector2(0.5, 0.5)
-target_position = Vector2(-300, 0)
+target_position = Vector2(-96, 0)
 
 [node name="RayCastVisionRight" type="RayCast2D" parent="Area2D"]
-position = Vector2(24, 0)
+position = Vector2(8, 0)
 scale = Vector2(0.5, 0.5)
-target_position = Vector2(300, 0)
+target_position = Vector2(102, 0)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 bus = &"Effects"

@@ -25,7 +25,7 @@ signal response_selected(response: String)
 # Definición del personaje principal
 @export var npc: CharacterBody2D
 # Opcionalmente se puede hacer que el diálogo inicie con un evento de teclado
-@export var show_input_key: String = ""
+@export var show_input_key: String = "ui_accept"
 # Para saber si el NPC es el "BigGuy"
 @export var is_big_guy: bool = false
 

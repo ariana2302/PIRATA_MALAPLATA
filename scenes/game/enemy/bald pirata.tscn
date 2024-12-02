@@ -714,7 +714,8 @@ script = SubResource("GDScript_6chrj")
 position = Vector2(1, -2)
 scale = Vector2(0.59375, 0.5)
 sprite_frames = SubResource("SpriteFrames_fq7gh")
-animation = &"attack"
+animation = &"anticipation"
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 1.5)
